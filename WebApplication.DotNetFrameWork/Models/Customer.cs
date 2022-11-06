@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication.DotNetFrameWork.Models
 {
@@ -17,8 +18,12 @@ namespace WebApplication.DotNetFrameWork.Models
 
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(255)]
         public string Email { get; set; }
 
         public string Phone { get; set; }

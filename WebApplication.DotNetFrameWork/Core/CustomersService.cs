@@ -60,7 +60,10 @@ namespace WebApplication.DotNetFrameWork.Core
             customer.Email = customerDto.Email;
             customer.Phone = customer.Phone;
 
-            //Add businsess validation her for entities            
+            //To throw exception
+            customer.Name = String.Empty;
+            //Add businsess validation her for entities
+            
             await _dbContext.SaveChangesAsync();            
         }
     }

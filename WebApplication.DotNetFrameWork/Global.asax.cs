@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using log4net.Config;
+using log4net.Core;
+using Swashbuckle.Swagger;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -13,11 +12,19 @@ namespace WebApplication.DotNetFrameWork
     {
         protected void Application_Start()
         {
+            
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            XmlConfigurator.Configure();
+        }
+
+        protected void Application_End()
+        {
+            LoggerManager.Shutdown();
         }
     }
 }
