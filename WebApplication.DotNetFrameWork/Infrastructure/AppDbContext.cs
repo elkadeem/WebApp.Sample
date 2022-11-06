@@ -7,6 +7,7 @@ namespace WebApplication.DotNetFrameWork.Infrastructure
     {
         public AppDbContext()
         {
+            Database.SetInitializer<AppDbContext>(new DropCreateDatabaseIfModelChanges<AppDbContext>());
         }
 
         public DbSet<Customer> Customers { get; set; }

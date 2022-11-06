@@ -27,10 +27,19 @@ namespace WebApplication.DotNetFrameWork.Controllers
         [ResponseType(typeof(IEnumerable<OutputCustomerDto>))]
         public async Task<IHttpActionResult> Get()
         {
-            log.Debug("Getting customers data");
-            var customers = await _customersService.Get();
-            log.Debug($"Get '{customers.Count}' customers.");
-            return Ok(customers);
+            try
+            {
+                log.Debug("Getting customers data");
+                var customers = await _customersService.Get();
+                log.Debug($"Get '{customers.Count}' customers.");
+                return Ok(customers);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal(ex.Message, ex);
+                return InternalServerError(); // Or you can pass ex if you need detailed error
+                                             //return InternalServerError(ex); 
+            }            
         }
 
         // GET: api/Customers/5
